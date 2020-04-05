@@ -28,26 +28,28 @@ function Table(props) {
         setTableData([idea, webstorm, goland]);
     }, [data]);
 
-    return <div className="table">
-        <p>Product</p>
-        <p>Min Usage</p>
-        <p>Max Usage</p>
-        <p>Average Usage</p>
+    return <div className="table-overflow">
+        <div className="table">
+            <p>Product</p>
+            <p>Min Usage</p>
+            <p>Max Usage</p>
+            <p>Average Usage</p>
 
-        <p>IDEA</p>
-        <p>{min(tableData[0])}</p>
-        <p>{max(tableData[0])}</p>
-        <p>{average(tableData[0])}</p>
+            <p>IDEA</p>
+            <p>{min(tableData[0])}</p>
+            <p>{max(tableData[0])}</p>
+            <p>{average(tableData[0])}</p>
 
-        <p>WebStorm</p>
-        <p>{min(tableData[1])}</p>
-        <p>{max(tableData[1])}</p>
-        <p>{average(tableData[1])}</p>
+            <p>WebStorm</p>
+            <p>{min(tableData[1])}</p>
+            <p>{max(tableData[1])}</p>
+            <p>{average(tableData[1])}</p>
 
-        <p>Goland</p>
-        <p>{min(tableData[2])}</p>
-        <p>{max(tableData[2])}</p>
-        <p>{average(tableData[2])}</p>
+            <p>Goland</p>
+            <p>{min(tableData[2])}</p>
+            <p>{max(tableData[2])}</p>
+            <p>{average(tableData[2])}</p>
+        </div>
     </div>
 }
 

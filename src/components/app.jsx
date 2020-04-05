@@ -1,6 +1,5 @@
 import React, {useLayoutEffect, useState} from 'react';
-//import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip} from 'recharts';
-import {BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid} from 'recharts';
+import {BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Label} from 'recharts';
 
 import server from "../api";
 import Table from "./table";
@@ -172,68 +171,83 @@ function App() {
 
     return <>
         <h1>Stats</h1>
-        <p>{rangedData[0] ? `From ${rangedData[0].timestamp} through ${rangedData[rangedData.length - 1].timestamp}` : `Waiting...`}</p>
-        <div>
-            <button onClick={prevPage}>prev</button>
-            <span>Prev month</span>
+        <p
+            className="date-range"
+        >
+            {rangedData[0] ? `From ${rangedData[0].timestamp} through ${rangedData[rangedData.length - 1].timestamp}` : `Waiting...`}
+        </p>
+        <div className="range-switch">
+            <button onClick={prevPage}>Prev</button>
             <select onChange={rangeData}>
                 <option value="quarter">quarter</option>
                 <option value="month">month</option>
                 <option value="week">week</option>
                 <option value="day">day</option>
             </select>
-            <span>Next month</span>
-            <button onClick={nextPage}>next</button>
+            <button onClick={nextPage}>Next</button>
         </div>
-        <Table
-            data={rangedData ? rangedData : []}
-        />
+        <div className="table-container">
+            <Table
+                data={rangedData ? rangedData : []}
+            />
+        </div>
 
-
-        <BarChart width={1000} height={200} data={rangedData ? rangedData : []}>
-            <XAxis dataKey="timestamp" stroke="#8884d8"/>
-            <Tooltip wrapperStyle={{width: `auto`, backgroundColor: '#ccc'}}/>
-            <Legend width={100} wrapperStyle={{
-                top: 40,
-                right: 20,
-                backgroundColor: '#f5f5f5',
-                border: '1px solid #d5d5d5',
-                borderRadius: 3,
-                lineHeight: '40px'
-            }}/>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
-            <Bar dataKey="webstorm" fill="#6600CC" barSize={30}/>
-        </BarChart>
-
-        <BarChart width={1000} height={200} data={rangedData ? rangedData : []}>
-            <XAxis dataKey="name" stroke="#8884d8"/>
-            <Tooltip wrapperStyle={{width: `auto`, backgroundColor: '#ccc'}}/>
-            <Legend width={100} wrapperStyle={{
-                top: 40,
-                right: 20,
-                backgroundColor: '#f5f5f5',
-                border: '1px solid #d5d5d5',
-                borderRadius: 3,
-                lineHeight: '40px'
-            }}/>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
-            <Bar dataKey="idea" fill="#0033CC" barSize={30}/>
-        </BarChart>
-
-        <BarChart width={1000} height={200} data={rangedData ? rangedData : []}>
-            <XAxis dataKey="name" stroke="#8884d8"/>
-            <Tooltip wrapperStyle={{width: `auto`, backgroundColor: '#ccc'}}/>
-            <Legend width={100} wrapperStyle={{
-                top: 40,
-                right: 20,
-                backgroundColor: '#f5f5f5',
-                border: '1px solid #d5d5d5',
-                borderRadius: 3,
-                lineHeight: '40px'
-            }}/>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
-            <Bar dataKey="goland" fill="#009999" barSize={30}/>
-        </BarChart>
+        <div className="graphs-overflow">
+            <div className="graph">
+                <BarChart width={1000} height={200} data={rangedData ? rangedData : []}>
+                    <XAxis dataKey="timestamp" stroke="#8884d8"/>
+                    <Tooltip wrapperStyle={{width: `auto`, backgroundColor: '#ccc'}}/>
+                    <Legend width={100} wrapperStyle={{
+                        top: 40,
+                        right: 20,
+                        backgroundColor: '#f5f5f5',
+                        border: '1px solid #d5d5d5',
+                        borderRadius: 3,
+                        lineHeight: '40px',
+                        padding: '10px',
+                        width: 'auto'
+                    }}/>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
+                    <Bar dataKey="webstorm" fill="#6600CC" barSize={30}/>
+                </BarChart>
+            </div>
+            <div className="graph">
+                <BarChart width={1000} height={200} data={rangedData ? rangedData : []}>
+                    <XAxis dataKey="name" stroke="#8884d8"/>
+                    <Tooltip wrapperStyle={{width: `auto`, backgroundColor: '#ccc'}}/>
+                    <Legend width={100} wrapperStyle={{
+                        top: 40,
+                        right: 20,
+                        backgroundColor: '#f5f5f5',
+                        border: '1px solid #d5d5d5',
+                        borderRadius: 3,
+                        lineHeight: '40px',
+                        padding: '10px',
+                        width: 'auto'
+                    }}/>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
+                    <Bar dataKey="idea" fill="#0033CC" barSize={30}/>
+                </BarChart>
+            </div>
+            <div className="graph">
+                <BarChart width={1000} height={200} data={rangedData ? rangedData : []}>
+                    <XAxis dataKey="name" stroke="#8884d8"/>
+                    <Tooltip wrapperStyle={{width: `auto`, backgroundColor: '#ccc'}}/>
+                    <Legend width={100} wrapperStyle={{
+                        top: 40,
+                        right: 20,
+                        backgroundColor: '#f5f5f5',
+                        border: '1px solid #d5d5d5',
+                        borderRadius: 3,
+                        lineHeight: '40px',
+                        padding: '10px',
+                        width: 'auto'
+                    }}/>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
+                    <Bar dataKey="goland" fill="#009999" barSize={30}/>
+                </BarChart>
+            </div>
+        </div>
     </>
 }
 
